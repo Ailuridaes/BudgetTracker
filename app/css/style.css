@@ -16,6 +16,14 @@ table {
   margin: 2em 0 1em;
 }
 
+#summary p {
+  font-size: 1.33em;
+}
+
+.negative {
+	color: #a94442;
+}
+
 /* Fix bootstrap table borders with pull-right */
 tr {
   border-bottom: 1px solid #ddd;

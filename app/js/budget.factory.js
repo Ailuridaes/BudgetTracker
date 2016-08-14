@@ -21,7 +21,8 @@
             getIncomeTotal: function(){return incomeTotal},
             addExpense: addExpense,
             getExpenseList: function(){return expenseList},
-            getExpenseTotal: function(){return expenseTotal}
+            getExpenseTotal: function(){return expenseTotal},
+            getRemainder: function(){return incomeTotal - expenseTotal;}
         };
 
         return service;

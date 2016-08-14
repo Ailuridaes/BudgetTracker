@@ -10,9 +10,9 @@
     /* @ngInject */
     function BudgetController(budgetFactory) {
         var vm = this;
-        var incomeTotal;
-        var expenseTotal;
-        var remainder;
+        vm.incomeTotal;
+        vm.expenseTotal;
+        vm.remainder;
 
         // use array so can ng-repeat same template for both sections
         var income = {
@@ -32,21 +32,24 @@
         activate();
 
         function activate() {
-            // incomeList = [{desc: "JOB", amount:100}, {desc:"STRIPPING", amount:500}];
-            // console.log(incomeList);
-            // income.list = incomeList;
-            // console.log(income.list[0].desc);
+            income.list = budgetFactory.getIncomeList();
+            expenses.list = budgetFactory.getExpenseList();
+            vm.incomeTotal = budgetFactory.getIncomeTotal();
+            vm.expenseTotal = budgetFactory.getExpenseTotal();
+            vm.remainder = budgetFactory.getRemainder();
         }
 
         function addIncome(entry) {
             income.list = budgetFactory.addIncome(entry);
-            incomeTotal = budgetFactory.getIncomeTotal();
+            vm.incomeTotal = budgetFactory.getIncomeTotal();
+            vm.remainder = budgetFactory.getRemainder();
             income.newItem = {};
         }
 
         function addExpense(entry){
             expenses.list = budgetFactory.addExpense(entry);
-            expenseTotal = budgetFactory.getExpenseTotal;
+            vm.expenseTotal = budgetFactory.getExpenseTotal();
+            vm.remainder = budgetFactory.getRemainder();
             expenses.newItem = {};
         }
     }
