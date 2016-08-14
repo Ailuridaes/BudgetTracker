@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Budget Tracker</title>
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap-css/css/bootstrap.min.css" />
+  <!-- endbower -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+</head>
+<body ng-controller="BudgetController as budget">
+  <div class="container">
+    <h1 id="header">Budget Tracker</h1>
+    <div class="row">
+
+    <!-- budget entry lists -->
+    <div ng-repeat="comp in budget.budgetComponents" class="col-md-6">
+      <div ng-class="['panel', {'panel-success': comp.title==='Income', 'panel-danger':comp.title==='Expense'}]">
+        <div class="panel-heading">
+          <h4>{{comp.title}} Entries</h4>
+        </div>
+        <div class="panel-body">
+
+          <!-- add entry form -->
+          <form name="compForm" ng-submit="compForm.$valid && comp.addItem(comp.newItem)" novalidate>
+            <fieldset>
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" ng-model="comp.newItem.desc" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label>Amount</label>
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="number" ng-model="comp.newItem.amount" class="form-control" min="1" step="any" required>
+                </div>
+              </div>
+              <button type="submit" ng-class="['btn', 'btn-block', {'btn-success': comp.title==='Income', 'btn-danger':comp.title==='Expense'}]">
+                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Entry
+              </button>
+            </fieldset>
+          </form>
+
+          <!-- entries table -->
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th class="pull-right">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in comp.list">
+                <td>{{item.desc}}</td>
+                <td class="pull-right">{{item.amount | currency}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div>
+
+
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap-css/js/bootstrap.min.js"></script>
+  <!-- endbower -->
+  <!-- inject:js -->
+  <script src="js/app.js"></script>
+  <script src="js/budget.controller.js"></script>
+  <script src="js/budget.factory.js"></script>
+  <!-- endinject -->
+</body>
+</html>
