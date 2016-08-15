@@ -57,7 +57,7 @@
               <tbody>
                 <tr ng-repeat="item in comp.list">
                   <td>{{item.desc}}</td>
-                  <td class="pull-right">{{item.amount | currency}}</td>
+                  <td class="pull-right">{{item.amount | currency}} <span class="glyphicon glyphicon-trash" ng-click="comp.removeItem(item)"></span></td>
                 </tr>
               </tbody>
             </table>

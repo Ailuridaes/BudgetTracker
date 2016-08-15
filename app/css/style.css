@@ -16,6 +16,15 @@ table {
   margin: 2em 0 1em;
 }
 
+th.pull-right {
+  margin-right: 2.66em;
+}
+
+.glyphicon-trash {
+  padding: 0 8px 0 1em;
+  cursor: pointer;
+}
+
 #summary p {
   font-size: 1.33em;
 }

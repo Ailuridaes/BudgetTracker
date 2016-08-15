@@ -18,12 +18,14 @@
         var income = {
             title: "Income",
             addItem: addIncome,
+            removeItem: removeIncome,
             list: [],
             newItem: {}
         };
         var expenses = {
             title: "Expense",
             addItem: addExpense,
+            removeItem: removeExpense,
             list: [],
             newItem: {}
         };
@@ -51,6 +53,18 @@
             vm.expenseTotal = budgetFactory.getExpenseTotal();
             vm.remainder = budgetFactory.getRemainder();
             expenses.newItem = {};
+        }
+
+        function removeIncome(entry) {
+            income.list = budgetFactory.removeIncome(entry);
+            vm.incomeTotal = budgetFactory.getIncomeTotal();
+            vm.remainder = budgetFactory.getRemainder();
+        }
+
+        function removeExpense(entry) {
+            expenses.list = budgetFactory.removeExpense(entry);
+            vm.expenseTotal = budgetFactory.getExpenseTotal();
+            vm.remainder = budgetFactory.getRemainder();
         }
     }
 
